@@ -1,6 +1,9 @@
 = closestfib
 
-Description goes here.
+Written by Richard Nygord on 9/10/11
+
+Find the closest fibonacci number less than n
+by adding method closest_fibonacci to Fixnum and Bignum
 
 == Contributing to closestfib
  
