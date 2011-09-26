@@ -7,19 +7,19 @@ module ClosestFib
   class Error < RuntimeError
   end
   
-  class Fibs   
+  class Fibs
     @@fibs = [0,1]
     
     class << self
       def fib n
-        if n > 1
-          while @@fibs[n] == nil do
-            next_fib
-          end
-        end
+        next_fib while ! @@fibs[n]
         @@fibs[n]
       end
 
+      def next_fib
+        @@fibs[@@fibs.length] = last_fib + prev_fib
+      end
+      
       def last_fib
         @@fibs[@@fibs.length-1]
       end
@@ -28,20 +28,23 @@ module ClosestFib
         @@fibs[@@fibs.length-2]
       end
 
-      def next_fib
-        @@fibs[@@fibs.length] = prev_fib + last_fib
+      def all
+        @@fibs
+      end
+      
+      def flush
+        @@fibs = [0,1]
       end
     end    
   end
   
   def self.closestfib x
-    raise(Error, "no fibonacci numbers are negative") if x <= 0
+    raise(Error, "no Fibonacci numbers are less than 0") if x <= 0
     n=0
-    while (Fibs.fib n) < x do
-      n += 1
-    end
+    n+=1 while (Fibs.fib n) < x
     Fibs.fib n-1
   end
+
 end
 
 class Fixnum

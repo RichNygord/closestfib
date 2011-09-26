@@ -10,7 +10,7 @@ class TestClosestFib < Test::Unit::TestCase
     assert_equal( 89, 99.closest_fibonacci )
     assert_equal( 956722026041, 956722026042.closest_fibonacci )
     ex = assert_raise(ClosestFib::Error) { 0.closest_fibonacci }
-    assert_match( /no fibonacci numbers are negative/, ex.message )
+    assert_match( /no Fibonacci numbers are less than 0/, ex.message )
   end
 end
 
